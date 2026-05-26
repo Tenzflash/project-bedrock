@@ -1,0 +1,54 @@
+{
+    "verification":  {
+                         "all_pods_running":  true,
+                         "app_accessible":  true,
+                         "pipeline_passing":  true
+                     },
+    "security":  {
+                     "dev_user_arn":  "arn:aws:iam::554608989516:user/bedrock-dev-view",
+                     "secrets_manager_enabled":  true,
+                     "dev_user_permissions":  "ReadOnlyAccess + S3 PutObject on assets bucket"
+                 },
+    "asset_processing":  {
+                             "lambda_arn":  {
+
+                                            },
+                             "s3_bucket":  "bedrock-assets-alt-soe-025-4497",
+                             "lambda_function":  "bedrock-asset-processor",
+                             "trigger":  "S3 ObjectCreated:*"
+                         },
+    "infrastructure":  {
+                           "node_type":  "t3.medium",
+                           "region":  "us-east-1",
+                           "kubernetes_version":  "1.34",
+                           "cluster_name":  "project-bedrock-cluster",
+                           "node_count":  2,
+                           "vpc_id":  "vpc-0b146730fd2d19857"
+                       },
+    "student_id":  "alt-soe-025-4497",
+    "databases":  {
+                      "rds_mysql_endpoint":  "bedrock-catalog-db.csdwimegmlmm.us-east-1.rds.amazonaws.com:3306",
+                      "rds_postgresql_endpoint":  "bedrock-orders-db.csdwimegmlmm.us-east-1.rds.amazonaws.com:5432",
+                      "dynamodb_table":  "bedrock-cart-items"
+                  },
+    "ci_cd":  {
+                  "status":  "Validated successfully",
+                  "platform":  "GitHub Actions",
+                  "auth_method":  "OIDC (no access keys)",
+                  "workflow_file":  ".github/workflows/deploy.yml",
+                  "repository":  "https://github.com/Tenzflash/project-bedrock"
+              },
+    "application":  {
+                        "ingress_name":  "retail-store-ingress",
+                        "namespace":  "retail-app",
+                        "alb_url":  "http://k8s-retailap-retailst-17d19cf248-876098464.us-east-1.elb.amazonaws.com",
+                        "pods_running":  10
+                    },
+    "completion_date":  "2026-05-26",
+    "observability":  {
+                          "cloudwatch_app_logs":  "/aws/containerinsights/project-bedrock-cluster/application",
+                          "cloudwatch_cluster_logs":  "/aws/eks/project-bedrock-cluster/cluster",
+                          "cloudwatch_addon":  "amazon-cloudwatch-observability"
+                      },
+    "project_name":  "karatu-2025-capstone"
+}
